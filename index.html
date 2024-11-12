@@ -1,264 +1,391 @@
-<html><head><base href="https://audio-streamer-neumorphic.com/">
+<html>
+<head>
+<link rel="shortcut icon" type="https://i.ibb.co/n7mKdWM/00048bf5-7b4c-402f-88a0-90eb60253204.jpg"/> 
+<base href="https://cdn.example.com/modern-music-player/"></head>
+<html lang="es">
+<title>Radio la sabrosita En Vivo </title>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio la sabrosita 106.7 fm</title>
+    <title>Reproductor de Música Moderno con Carátula Circular e Iconos Sociales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e0e4e8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+        :root {
+            --primary-color: #1DB954;
+            --secondary-color: #191414;
+            --text-color: #FFFFFF;
+            --background-color: #121212;
+            --live-color: #FF4136;
         }
-        .player {
-            background-color: #e0e4e8;
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 20px 20px 60px #bcc0c4, -20px -20px 60px #ffffff;
-            width: 280px;
+
+        * {
+            margin: auto;
+            padding: auto;
+            box-sizing: border-box;
         }
+
+        body { 
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #1a237e, #4a148c);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+            min-height: 100vh;
+        }
+
+        .player-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            padding: 1%;
+            width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
         .album-art {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 25px;
-            border-radius: 12px;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
             overflow: hidden;
-            box-shadow: 8px 8px 24px #bcc0c4, -8px -8px 24px #ffffff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             position: relative;
+        
         }
+        
+
         .album-art img {
+            position: absolute;
             width: 100%;
             height: 100%;
+            color: blank;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            padding: 12px 12px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            font-size: 0.7em;
+            font-weight: 500;
+            animation: pulse 2s infinite;
+             background: linear-gradient(135deg, #31D305, #00FF00, #ffffff, #ffff00, #FF1F6F, #FE0101);
+             
+
         }
-        .album-art:hover img {
-            transform: scale(1.1);
+        
+
+        .equalizer-animation {
+            height: 40px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            margin-bottom: 20px;
         }
+
+        .bar {
+            width: 11px;
+            margin: 0 2px;
+            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+            animation: equalize 1.2s steps(8, end) infinite;
+            transition: height 0.3s;
+        }
+
+        @keyframes equalize {
+            0% { height: 10%; }
+            10% { height: 40%; }
+            20% { height: 65%; }
+            30% { height: 90%; }
+            40% { height: 60%; }
+            50% { height: 30%; }
+            60% { height: 70%; }
+            70% { height: 85%; }
+            80% { height: 50%; }
+            90% { height: 20%; }
+            100% { height: 10%; }
+        }
+
+        .song-info {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .song-info h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .song-info p {
+            font-size: 1em;
+            opacity: 0.7;
+        }
+        
+
+        .live-icon {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            background-color: var(--live-color);
+            color: white;
+            padding: 2px 5px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 500;
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         .controls {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 25px;
         }
-        .btn {
+
+        .controls button {
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 50%;
+            color: var(--text-color);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             width: 60px;
             height: 60px;
-            cursor: pointer;
-            background-color: #e0e4e8;
-            box-shadow: 8px 8px 15px #bcc0c4, -8px -8px 15px #ffffff;
-            transition: all 0.3s ease;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0;
         }
-        .btn:hover {
-            box-shadow: 12px 12px 20px #bcc0c4, -12px -12px 20px #ffffff;
+
+        .controls button:hover {
+            background-color: #1ed760;
+            transform: scale(1.05);
         }
-        .btn:active {
-            box-shadow: inset 8px 8px 15px #bcc0c4, inset -8px -8px 15px #ffffff;
-        }
-        .btn svg {
-            width: 25px;
-            height: 25px;
-            fill: #3a7bd5;
-        }
-        .song-info {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .song-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #3a7bd5;
-            margin-bottom: 8px;
-        }
-        .artist {
-            font-size: 16px;
-            color: #6c7a89;
-        }
-        .volume-control {
+
+        .volume-container {
+            display: flex;
+            align-items: center;
             margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
         }
-        .volume-slider {
+
+        .volume-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        #volume-control {
             -webkit-appearance: none;
-            width: 80%;
-            height: 8px;
-            border-radius: 4px;
-            background: #d1d5d9;
+            width: 100%;
+            height: 5px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
             outline: none;
-            box-shadow: inset 3px 3px 6px #bcc0c4, inset -3px -3px 6px #ffffff;
-            margin-bottom: 10px;
         }
-        .volume-slider::-webkit-slider-thumb {
+
+        #volume-control::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            background: #3a7bd5;
+            background: var(--primary-color);
             cursor: pointer;
-            box-shadow: 3px 3px 6px #bcc0c4, -3px -3px 6px #ffffff;
         }
-        .volume-slider::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
+
+        #volume-control::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            background: #3a7bd5;
+            background: var(--primary-color);
             cursor: pointer;
-            box-shadow: 3px 3px 6px #bcc0c4, -3px -3px 6px #ffffff;
         }
-        .volume-percentage {
-            font-size: 14px;
-            color: #3a7bd5;
-            margin-top: 5px;
-        }
+
         .social-icons {
             display: flex;
-            justify-content: space-around;
-            margin-top: 25px;
-        }
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #e0e4e8;
-            box-shadow: 5px 5px 10px #bcc0c4, -5px -5px 10px #ffffff;
-            display: flex;
             justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
+            margin-top: 20px;
         }
-        .social-icon:hover {
-            box-shadow: 7px 7px 12px #bcc0c4, -7px -7px 12px #ffffff;
+
+        .social-icons a {
+            color: var(--text-color);
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
         }
-        .social-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: #3a7bd5;
+
+        .social-icons a:hover {
+            color: var(--primary-color);
         }
-    </style>
-</head>
+        @keyframes pulse {
+              0% {
+               transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+               }
+               70% {
+                  transform: scale(1.05);
+                  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+                    }
+                 100% {
+                 transform: scale(1);
+              box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+        
+        
+    </style> 
 <body>
-    <div class="player">
-        <div class="album-art">
-            <img id="albumArt" alt=" Radio la sabrosita" src="data:image/svg+xml,%3Csvg xmlns=' https://i.ibb.co/n7mKdWM/00048bf5-7b4c-402f-88a0-90eb60253204.jpg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e0e4e8'/%3E%3Cpath d='M10 50 Q 25 30, 40 50 T 70 50 T 100 50' stroke='%233a7bd5' stroke-width='4' fill='none'/%3E%3Cpath d='M10 60 Q 25 40, 40 60 T 70 60 T 100 60' stroke='%236c7a89' stroke-width='4' fill='none'/%3E%3Cpath d='M10 40 Q 25 60, 40 40 T 70 40 T 100 40' stroke='%2300c9ff' stroke-width='4' fill='none'/%3E%3C/svg%3E" width="140" height="140">
+    <div class="player-container">
+    <div id="radio1"> 
+        <div class="album-art" id="album-art">
+            <img id="album-cover" src="https://example.com/covers/default-cover.jpg" alt="Portada del álbum por defecto">
+        </div>
+        
+        <div class="equalizer-animation">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
         <div class="song-info">
-            <div class="song-title">Radio la sabrosita 106.7</div>
-            <div class="artist">Director Juan José auri </div>
+            <span class="live-icon">En vivo</span>
+            <h2 id="song-title"> Director Juan José auri</h2>
+            <p id="artist">Artista Ejemplo</p>
+            
         </div>
         <div class="controls">
-            <button class="btn" id="playPauseBtn">
-                <svg viewBox="0 0 24 24" id="playPauseIcon">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-            </button>
+            <button id="play-pause"><i class="fas fa-play"></i></button>
         </div>
-        <div class="volume-control">
-            <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider" id="volumeSlider">
-            <div class="volume-percentage" id="volumePercentage">80%</div>
+        <div class="volume-container">
+            <span class="volume-icon"><i class="fas fa-volume-up"></i></span>
+            <input type="range" id="volume-control" min="0" max="1" step="0.1" value="1">
         </div>
         <div class="social-icons">
-            <a href=" https://www.facebook.com/radiofmlasabrosita.pinto" target="_blank" class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
-                </svg>
-            </a>
-            <a href="https://www.facebook.com/radiofmlasabrosita.pinto" target="_blank" class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                </svg>
-            </a>
-            <a href=" https://www.facebook.com/radiofmlasabrosita.pinto" target="_blank" class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-                </svg>
-            </a>
-            <a href=" https://wa.link/rcu7l4" target="_blank" class="social-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-            </a>
+            <a href=" https://www.facebook.com/radiofmlasabrosita.pinto" target="_blank"><img loading="lazy" alt="Sígueme en Facebook" height="35" width="35" src=" https://1.bp.blogspot.com/-Pop-U7OywXs/YPhkfrImyiI/AAAAAAAAA1Y/UBnVfTK9j2U-bIUqwZYMNSQPvz_l06mbwCPcBGAYYCw/s0/facebook-icono.png" title="Sígueme en Facebook"/></a>
+            <a href="  https://wa.link/5alxbo" target="_blank"><img loading="lazy" alt="Sígueme en WhatsApp" height="35" width="35" src=" https://1.bp.blogspot.com/-Vc_W7xraNnc/YPhkfwQExQI/AAAAAAAAA1c/dI72v37UC0EGJd7jWvKWYD3WMwZ7eER7gCPcBGAYYCw/s0/whatsapp-icono.png" title="Sígueme en WhatsApp"/></a>
+            <a href=" https://www.appcreator24.com/app2006176-ryv4pn" target="_blank"><img loading="lazy" alt=" Sígueme en PlayStore" height="35" width="35" src=" https://i.postimg.cc/9XpcpnYh/play-store.png" title="Sígueme en PlayStore"/></a>
+            <a href=" https://radiofmlasabrosita.blogspot.com/" target="_blank"><img loading="lazy" alt="Sígueme en YouTube" height="35" width="35" src=" https://1.bp.blogspot.com/-0Ao8V_ZtT5Q/YPhkfO0JqkI/AAAAAAAAA1U/Sz5GlaSW78AsY3nZpcqeIoPA_HQUSCVLgCPcBGAYYCw/s0/Youtube-icono.png" title=" Sígueme en YouTube "/></a>
+            <a href=" https://radiofmlasabrosita.blogspot.com/" target="_blank"><img loading="lazy" alt="Sígueme en Web" height="35" width="35" src="https://i.postimg.cc/CKm4JY58/web.png" title="Sígueme en la Web"/></a>
+            <a href=" https://www.appcreator24.com/app2006176-ryv4pn" target="_blank"><img loading="lazy" alt="Sígueme en PWA" height="35" width="35" src=" https://i.postimg.cc/SRwd8rst/PWA.png" title="Sígueme en PWA"/></a>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script>
-        const audio = new Audio('https://stream-175.zeno.fm/w99qu6w8sm0uv');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const playPauseIcon = document.getElementById('playPauseIcon');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const volumePercentage = document.getElementById('volumePercentage');
-        const albumArt = document.getElementById('albumArt');
+        const playPauseBtn = document.getElementById('play-pause');
+        const songTitle = document.getElementById('song-title');
+        const artist = document.getElementById('artist');
+        const albumCover = document.getElementById('album-cover');
+        const volumeControl = document.getElementById('volume-control');
+        const volumeIcon = document.querySelector('.volume-icon i');
+        const equalizerAnimation = document.querySelector('.equalizer-animation');
+        const bars = document.querySelectorAll('.bar');
 
-        let isPlaying = false;
+        const song = {
+            title: "Radio la sabrosita 106.7 FM",
+            artist: "Me Activa",
+            src: " https://stream-175.zeno.fm/w99qu6w8sm0uv",
+            cover: " https://i.ibb.co/n7mKdWM/00048bf5-7b4c-402f-88a0-90eb60253204.jpg"
+        };
 
-        // Inicializar el volumen al 80%
-        audio.volume = 0.8;
+        let sound;
 
-        function togglePlayPause() {
-            if (isPlaying) {
-                audio.pause();
-                playPauseIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-            } else {
-                audio.play();
-                playPauseIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
-            }
-            isPlaying = !isPlaying;
-        }
+        function loadSong() {
+            songTitle.textContent = song.title;
+            artist.textContent = song.artist;
+            albumCover.src = song.cover;
+            albumCover.alt = `Portada del álbum ${song.title} por ${song.artist}`;
 
-        playPauseBtn.addEventListener('click', togglePlayPause);
-
-        volumeSlider.addEventListener('input', (e) => {
-            const volume = e.target.value;
-            audio.volume = volume;
-            updateVolumePercentage(volume);
-        });
-
-        function updateVolumePercentage(volume) {
-            const percentage = Math.round(volume * 100);
-            volumePercentage.textContent = `${percentage}%`;
-        }
-
-        audio.addEventListener('error', (e) => {
-            console.error('Error al cargar el stream:', e);
-            alert('Lo sentimos, ha ocurrido un error al cargar el stream. Por favor, inténtelo de nuevo más tarde.');
-        });
-
-        const defaultAlbumArt = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e0e4e8'/%3E%3Cpath d='M10 50 Q 25 30, 40 50 T 70 50 T 100 50' stroke='%233a7bd5' stroke-width='4' fill='none'/%3E%3Cpath d='M10 60 Q 25 40, 40 60 T 70 60 T 100 60' stroke='%236c7a89' stroke-width='4' fill='none'/%3E%3Cpath d='M10 40 Q 25 60, 40 40 T 70 40 T 100 40' stroke='%2300c9ff' stroke-width='4' fill='none'/%3E%3C/svg%3E";
-
-        function updateSongInfo() {
-            const songs = [
-                { title: "Canción en Vivo 1", artist: "Artista 1", art: "https://source.unsplash.com/random/140x140?abstract,music&sig=1" },
-                { title: "Melodía del Momento", artist: "Artista 2", art: null },
-                { title: "Éxito Actual", artist: "Artista 3", art: "https://source.unsplash.com/random/140x140?abstract,music&sig=3" },
-                { title: "Nuevo Hit", artist: "Artista 4", art: null }
-            ];
-
-            setInterval(() => {
-                const randomSong = songs[Math.floor(Math.random() * songs.length)];
-                document.querySelector('.song-title').textContent = randomSong.title;
-                document.querySelector('.artist').textContent = randomSong.artist;
-                
-                if (randomSong.art) {
-                    albumArt.src = randomSong.art;
-                    albumArt.alt = `Arte del álbum para ${randomSong.title} de ${randomSong.artist}, estilo abstracto`;
-                } else {
-                    albumArt.src = defaultAlbumArt;
-                    albumArt.alt = `Arte del álbum por defecto para ${randomSong.title} de ${randomSong.artist}, ondas de audio azules`;
+            sound = new Howl({
+                src: [song.src],
+                html5: true,
+                autoplay: true, // Add this line to enable autoplay
+                onplay: () => {
+                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    startEqualizerAnimation();
+                },
+                onpause: () => {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    stopEqualizerAnimation();
+                },
+                onend: () => {
+                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    stopEqualizerAnimation();
                 }
-            }, 30000);
+            });
         }
 
-        updateSongInfo();
-        updateVolumePercentage(0.8); // Inicializar el porcentaje de volumen al 80%
-    </script>
-</body></html>
+        function startEqualizerAnimation() {
+            bars.forEach((bar, index) => {
+                bar.style.animation = `equalize 1.2s steps(8, end) infinite ${index * 0.1}s`;
+            });
+        }
+
+        function stopEqualizerAnimation() {
+            bars.forEach(bar => {
+                bar.style.animation = 'none';
+                bar.style.height = '10%';
+            });
+        }
+
+        function playSong() {
+            sound.play();
+        }
+
+        function pauseSong() {
+            sound.pause();
+        }
+
+        function updateVolumeIcon(value) {
+            if (value >= 0.5) {
+                volumeIcon.className = 'fas fa-volume-up';
+            } else if (value > 0) {
+                volumeIcon.className = 'fas fa-volume-down';
+            } else {
+                volumeIcon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        playPauseBtn.addEventListener('click', () => {
+            if (sound.playing()) {
+                pauseSong();
+            } else {
+                playSong();
+            }
+        });
+
+        volumeControl.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            sound.volume(value);
+            updateVolumeIcon(value);
+        });
+
+        loadSong();
+        updateVolumeIcon(1); // Inicializar el icono de volumen
+        playSong(); // Add this line to start playing the song immediately
+    </script></center>
+    <div class="repro-box2">
+</div><style>#radio1 {color: #FFFFFF;margin: 0 0 0%;overflow: hidden;padding: 10px; background:#0060ff; border: solid 5px #fffc00; border-radius:40px;}
+</style>
+</div>
+
+
+</body>
+</html>
